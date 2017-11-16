@@ -2,17 +2,40 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-class App extends Component {
+import { Todo } from './Todo.js'
+
+class SubText extends React.Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <p>{this.props.text}</p>
+    )
+  }
+}
+
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+        count: 0,
+    }
+  }
+
+  handleClick() {
+    this.setState({
+      count: this.state.count + 1,
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <span>{this.state.count}</span>
+        <button onClick={this.handleClick.bind(this)}>+</button>
+        <div>
+          <SubText text='hogehoge' />
+          <SubText text='huga' />
+        </div>
+        <Todo />
       </div>
     );
   }
